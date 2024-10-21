@@ -10,6 +10,4 @@ export default class Order {
     this._customerId = customerId;
     this._items = items;
   }
-
-  validate() {}
 }
