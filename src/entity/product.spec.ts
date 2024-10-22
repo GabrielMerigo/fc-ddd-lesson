@@ -18,4 +18,30 @@ describe("Product Unit Tests", () => {
       new Product("uuid", "product name", -1);
     }).toThrow("Price must be greater than 0");
   });
+
+  it("should change name", () => {
+    const product = new Product("uuid", "product name 1", 12);
+
+    expect(product.name).toBe("product name 1");
+
+    product.changeName("Product name 2");
+
+    expect(product.name).toBe("Product name 2");
+  });
+
+  it("should change price", () => {
+    const product = new Product("uuid", "product name 1", 12);
+
+    expect(product.price).toBe(12);
+
+    product.changePrice(15);
+
+    expect(product.price).toBe(15);
+  });
+
+  it("should not let change name", () => {
+    expect(() => {
+      new Product("uuid", "", 12);
+    }).toThrow("Name is required");
+  });
 });

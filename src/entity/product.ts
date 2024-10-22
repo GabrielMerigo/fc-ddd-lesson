@@ -26,4 +26,22 @@ export default class Product {
 
     return true;
   }
+
+  get name() {
+    return this._name;
+  }
+
+  get price() {
+    return this._price;
+  }
+
+  changeName(value: string) {
+    this._name = value;
+    this.validate();
+  }
+
+  changePrice(value: number) {
+    this._price = value;
+    this.validate();
+  }
 }
