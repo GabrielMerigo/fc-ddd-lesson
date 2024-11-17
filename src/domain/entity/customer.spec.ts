@@ -54,4 +54,16 @@ describe("Customer Unit Tests", () => {
 
     expect(customer.active).toBe(false);
   });
+
+  it("should add reward points", () => {
+    const address = new Address("Street", 123, "Zip", "City");
+    const customer = new Customer("uuid", "full name", address, false);
+    expect(customer.rewardPoints).toBe(0);
+
+    customer.addRewardPoints(50);
+    expect(customer.rewardPoints).toBe(50);
+
+    customer.addRewardPoints(100);
+    expect(customer.rewardPoints).toBe(150);
+  });
 });
