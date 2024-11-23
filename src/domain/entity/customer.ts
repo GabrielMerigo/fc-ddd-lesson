@@ -39,6 +39,10 @@ export default class Customer {
     return (this._active = true);
   }
 
+  get zipCode(): string {
+    return this._address.zip;
+  }
+
   deactivate() {
     return (this._active = false);
   }

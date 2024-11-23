@@ -3,7 +3,6 @@ import {
   Model,
   PrimaryKey,
   Table,
-  DataType,
   ForeignKey,
   BelongsTo,
   HasMany,
@@ -13,7 +12,7 @@ import OrderItemModel from "./order-item.model";
 
 @Table({
   tableName: "orders",
-  timestamps: true,
+  timestamps: false,
 })
 export default class OrderModel extends Model {
   @PrimaryKey
