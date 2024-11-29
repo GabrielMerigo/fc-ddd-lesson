@@ -1,3 +1,6 @@
+import { EventDispatcherSingleton } from "../event/@shared/event-dispatcher-singleton";
+import CustomerChangeAddressEvent from "../event/customer/customer-change-address.event";
+import CustomerCreatedEvent from "../event/customer/customer-created.event";
 import Address from "./address";
 
 export default class Customer {
@@ -14,6 +17,10 @@ export default class Customer {
     this._active = active;
 
     this.validate();
+
+    const eventDispatcher = EventDispatcherSingleton.getInstance();
+    const customerCreatedEvent = new CustomerCreatedEvent(this);
+    eventDispatcher.notify(customerCreatedEvent);
   }
 
   validate() {
@@ -29,6 +36,17 @@ export default class Customer {
   changeName(name: string) {
     this._name = name;
     this.validate();
+  }
+
+  changeAddress(address: Address) {
+    this._address = address;
+    const eventDispatcher = EventDispatcherSingleton.getInstance();
+    const customerChangeAddressEvent = new CustomerChangeAddressEvent({
+      id: this._id,
+      name: this._name,
+      street: this._address.street,
+    });
+    eventDispatcher.notify(customerChangeAddressEvent);
   }
 
   activate() {

@@ -100,6 +100,7 @@ describe("Customer Repository Test", () => {
     const customerModel = await CustomerModel.findOne({
       where: { id: "uuid" },
     });
+
     expect(customerModel.toJSON()).toStrictEqual(
       expect.objectContaining({
         id: "uuid",
@@ -166,5 +167,30 @@ describe("Customer Repository Test", () => {
     expect(async () => {
       await customerRepository.find("nonexistent-uuid");
     }).rejects.toThrow("Customer not found");
+  });
+
+  it("should change the address of a customer", async () => {
+    const customerRepository = new CustomerRepository();
+    const address = new Address("Street 1", 123, "12345", "City");
+    const customer = new Customer("uuid", "John Doe", address, false);
+
+    await customerRepository.create(customer);
+
+    expect(customer.address.street).toBe("Street 1");
+
+    const newAddress = new Address("Street 2", 456, "67890", "Town");
+    customer.changeAddress(newAddress);
+
+    await customerRepository.update(customer);
+
+    const foundCustomer = await CustomerModel.findOne({
+      where: { id: "uuid" },
+    });
+
+    expect(foundCustomer.toJSON()).toStrictEqual(
+      expect.objectContaining({
+        street: "Street 2",
+      })
+    );
   });
 });
