@@ -1,11 +1,11 @@
-import Address from "./domain/entity/address";
-import Customer from "./domain/entity/customer";
-import Order from "./domain/entity/order";
-import OrderItem from "./domain/entity/orderItem";
-import { EventDispatcherSingleton } from "./domain/event/@shared/event-dispatcher-singleton";
-import SendConsoleLogOneHandler from "./domain/event/customer/handler/send-console-log-one-handler";
-import SendConsoleLogSecondHandler from "./domain/event/customer/handler/send-console-log-second-handler";
-import SendConsoleWhenUserChangeAddress from "./domain/event/customer/handler/send-console-when-user-change-address";
+import Order from "./domain/checkout/entity/order";
+import OrderItem from "./domain/checkout/entity/orderItem";
+import SendConsoleWhenUserChangeAddress from "./domain/customer/event/handler/send-console-when-user-change-address";
+import SendConsoleLogOneHandler from "./domain/customer/event/handler/send-console-log-one-handler";
+import SendConsoleLogSecondHandler from "./domain/customer/event/handler/send-console-log-second-handler";
+import { EventDispatcherSingleton } from "./domain/@shared/event/event-dispatcher-singleton";
+import Customer from "./domain/customer/entity/customer";
+import Address from "./domain/customer/value-object/address";
 
 const eventDispatcher = EventDispatcherSingleton.getInstance();
 
