@@ -1,5 +1,5 @@
-import Order from "./domain/checkout/entity/order";
-import OrderItem from "./domain/checkout/entity/orderItem";
+import Order from "./domain/order/entity/order";
+import OrderItem from "./domain/order/entity/orderItem";
 import SendConsoleWhenUserChangeAddress from "./domain/customer/event/handler/send-console-when-user-change-address";
 import SendConsoleLogOneHandler from "./domain/customer/event/handler/send-console-log-one-handler";
 import SendConsoleLogSecondHandler from "./domain/customer/event/handler/send-console-log-second-handler";

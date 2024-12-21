@@ -1,13 +1,13 @@
 import { DataTypes, Sequelize } from "sequelize";
 import OrderRepository from "./order.repository";
-import Order from "../../../domain/checkout/entity/order";
+import Order from "../../../domain/order/entity/order";
 import Customer from "../../../domain/customer/entity/customer";
 import Address from "../../../domain/customer/value-object/address";
 import ProductModel from "../../product/repository-impl/product.model";
 import CustomerModel from "../../customer/repository-impl/customer.model";
 import Product from "../../../domain/product/entity/product";
 import ProductRepository from "../../product/repository-impl/product.repository";
-import OrderItem from "../../../domain/checkout/entity/orderItem";
+import OrderItem from "../../../domain/order/entity/orderItem";
 import CustomerRepository from "../../customer/repository-impl/customer.repository";
 import OrderItemModel from "./order-item.model";
 import OrderModel from "./order.model";
