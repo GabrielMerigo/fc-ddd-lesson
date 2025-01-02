@@ -16,7 +16,7 @@ export default class Product {
       throw new Error("Id is required");
     }
 
-    if (this._name.length === 0) {
+    if (this._name.length === 0 || this._name === "") {
       throw new Error("Name is required");
     }
 

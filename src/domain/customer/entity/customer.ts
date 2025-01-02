@@ -10,7 +10,7 @@ export default class Customer {
   private _active: boolean;
   private _rewardPoints: number = 0;
 
-  constructor(id: string, name: string, address: Address, active: boolean) {
+  constructor(id: string, name: string, address?: Address, active: boolean = false) {
     this._id = id;
     this._name = name;
     this._address = address;
