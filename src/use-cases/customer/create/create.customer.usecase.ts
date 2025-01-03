@@ -21,7 +21,12 @@ export class CreateCustomerUseCase {
     return {  
       id: customer.id,
       name: customer.name,
-      address: customer.address,
+      address: {
+        street: customer.address.street,
+        number: customer.address.number,
+        zip: customer.address.zip,
+        city: customer.address.city,
+      },
     };
   }
 }
