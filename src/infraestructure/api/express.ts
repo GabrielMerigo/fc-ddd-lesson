@@ -2,11 +2,15 @@ import express, { Express } from "express";
 import { DataTypes, Sequelize } from "sequelize";
 import CustomerModel from "../customer/repository-impl/customer.model";
 import { customerRouter } from "./routes/customer.routes";
+import { productRouter } from "./routes/product.routes";
+import ProductModel from "../product/repository-impl/product.model";
 
 export const app: Express = express();
 
 app.use(express.json());
+
 app.use("/customers", customerRouter);
+app.use("/products", productRouter);
 
 export let sequelize: Sequelize;
 
@@ -59,6 +63,27 @@ async function setupDb() {
     }
   );
 
+  ProductModel.initialize(
+    {
+      id: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: true,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      price: {
+        type: DataTypes.NUMBER,
+        allowNull: false,
+      },
+    },
+    {
+      sequelize,
+      modelName: "Product",
+    }
+  );
   
   await sequelize.sync({ force: true });
 }

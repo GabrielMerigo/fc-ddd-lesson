@@ -31,7 +31,12 @@ describe("Unit test create customer use case", () => {
     const outputExpected = {
       id: expect.any(String),
       name: input.name,
-      address: new Address(input.address.street, input.address.number, input.address.zip, input.address.city),
+      address: {
+        street: input.address.street,
+        number: input.address.number,
+        zip: input.address.zip,
+        city: input.address.city,
+      },
     };
 
     expect(output).toEqual(outputExpected);
