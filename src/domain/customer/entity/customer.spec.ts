@@ -1,3 +1,4 @@
+import NotificationError from "../../@shared/notification/notification.error";
 import Address from "../value-object/address";
 import Customer from "./customer";
 
@@ -15,7 +16,7 @@ describe("Customer Unit Tests", () => {
       const address = new Address("Street", 123, "Zip", "City");
 
       new Customer("uuid", "", address, false);
-    }).toThrow("Name is required");
+    }).toThrow("customer: Name is required");
   });
 
   it("should change name", () => {
@@ -28,12 +29,12 @@ describe("Customer Unit Tests", () => {
   });
 
   it("should throw error when user enter an empty name", () => {
-    expect(() => {
-      const address = new Address("Street", 123, "Zip", "City");
-      const customer = new Customer("uuid", "my full name", address, false);
+    const address = new Address("Street", 123, "Zip", "City");
+    const customer = new Customer("uuid", "my full name", address, false);
 
-      customer.changeName("");
-    }).toThrow("Name is required");
+    expect(() => {
+      customer.changeName("")
+    }).toThrow("customer: Name is required");
   });
 
   it("should activate customer", () => {
