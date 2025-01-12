@@ -1,7 +1,9 @@
 import { Entity } from "../../@shared/entity/entity.abstract";
 import { EventDispatcherSingleton } from "../../@shared/event/event-dispatcher-singleton";
+import NotificationError from "../../@shared/notification/notification.error";
 import CustomerChangeAddressEvent from "../event/customer-change-address.event";
 import CustomerCreatedEvent from "../event/customer-created.event";
+import CustomerValidatorFactory from "../factory/customer.validator.factory";
 import Address from "../value-object/address";
 
 export default class Customer extends Entity {
@@ -10,9 +12,14 @@ export default class Customer extends Entity {
   private _active: boolean;
   private _rewardPoints: number = 0;
 
-  constructor(id: string, name: string, address?: Address, active: boolean = false) {
+  constructor(
+    id: string,
+    name: string,
+    address?: Address,
+    active: boolean = false
+  ) {
     super();
-    this._id = id; 
+    this._id = id;
     this._name = name;
     this._address = address;
     this._active = active;
@@ -25,23 +32,10 @@ export default class Customer extends Entity {
   }
 
   validate() {
-    if (!this._id) {
-      this.notification.addError({
-        context: "customer",
-        message: "Id is required",
-      });
-    }
-
-    if (this._name === "") {
-      console.log("caiu aqui?", this._name);
-      this.notification.addError({
-        context: "customer",
-        message: "Name is required",
-      });
-    }
+    CustomerValidatorFactory.execute().validate(this);
 
     if (this.notification.hasErrors()) {
-      throw new Error(this.notification.messages());
+      throw new NotificationError(this.notification.getErrors());
     }
   }
 

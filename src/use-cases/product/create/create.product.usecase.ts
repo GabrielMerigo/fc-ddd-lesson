@@ -1,5 +1,5 @@
+import ProductFactory from "../../../domain/product/factory/product.factory";
 import ProductRepositoryInterface from "../../../domain/product/repository/product-repository.interface";
-import ProductFactory from "../../../infraestructure/product/factory/product.factory";
 
 export default class CreateProductUseCase {
   constructor(private productRepository: ProductRepositoryInterface) {}

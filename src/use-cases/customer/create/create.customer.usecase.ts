@@ -1,7 +1,7 @@
 import CustomerRepository from "../../../infraestructure/customer/repository-impl/customer.repository";
 import { InputCreateCustomerDto, OutputCreateCustomerDto } from "./create.customer.dto";
 import Address from "../../../domain/customer/value-object/address";
-import CustomerFactory from "../../../infraestructure/customer/factory/customer.factory";
+import CustomerFactory from "../../../domain/customer/factory/customer.factory";
 
 export class CreateCustomerUseCase {
   private customerRepository: CustomerRepository;

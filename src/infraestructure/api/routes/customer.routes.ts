@@ -2,6 +2,7 @@ import { Router, Request, Response } from "express";
 import CustomerRepository from "../../customer/repository-impl/customer.repository";
 import { CreateCustomerUseCase } from "../../../use-cases/customer/create/create.customer.usecase";
 import ListCustomerUseCase from "../../../use-cases/customer/list/list.customer.usecase";
+import CustomerPresenter from "../presenters/customer.presenter";
 
 export const customerRouter = Router();
 
@@ -32,16 +33,8 @@ customerRouter.get("/", async (req: Request, res: Response) => {
   const useCase = new ListCustomerUseCase(customerRepository);
   const output = await useCase.execute({});
 
-  res.send({
-    customers: output.customers.map((customer) => ({
-      id: customer.id,
-      name: customer.name,
-      address: {
-        street: customer.address.street,
-        city: customer.address.city,
-        number: customer.address.number,
-        zip: customer.address.zip,
-      },
-    })),
+  res.format({
+    json: async () => res.send(CustomerPresenter.toJSON(output)),
+    xml: async () => res.send(CustomerPresenter.toXml(output)),
   });
 });

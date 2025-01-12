@@ -1,4 +1,4 @@
-import ProductFactory from "../../../infraestructure/product/factory/product.factory";
+import ProductFactory from "../../../domain/product/factory/product.factory";
 import FindProductUseCase from "./find.product.usecase";
 
 const product = ProductFactory.createWithNameAndPrice("Product 1", 100);
